@@ -1,0 +1,1489 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>5C Network | Radiology That Moves At Care Speed</title>
+    <meta
+      name="description"
+      content="5C Network connects hospitals, diagnostic centres, radiologists, and AI workflows for fast, high-quality scan reporting."
+    >
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Syne:wght@600;700;800&display=swap"
+      rel="stylesheet"
+    >
+    <style>
+      :root {
+        --color-ink: #102126;
+        --color-ink-soft: #42545a;
+        --color-muted: #6b7d82;
+        --color-line: #d9e5e4;
+        --color-cloud: #f3f8f7;
+        --color-surface: #ffffff;
+        --color-surface-alt: #eaf5f3;
+        --color-deep: #07181d;
+        --color-deep-2: #0e2b31;
+        --color-teal: #00a899;
+        --color-teal-dark: #007f78;
+        --color-mint: #bff4ea;
+        --color-coral: #ff6b5f;
+        --color-amber: #f6b94a;
+        --color-blue: #477cff;
+        --color-lilac: #9b7cff;
+
+        --font-heading: "Syne", "Arial Black", system-ui, sans-serif;
+        --font-body: "DM Sans", Inter, system-ui, sans-serif;
+        --font-mono: "DM Mono", "SFMono-Regular", Consolas, monospace;
+
+        --space-1: 4px;
+        --space-2: 8px;
+        --space-3: 12px;
+        --space-4: 16px;
+        --space-5: 20px;
+        --space-6: 24px;
+        --space-8: 32px;
+        --space-10: 40px;
+        --space-12: 48px;
+        --space-16: 64px;
+        --space-20: 80px;
+        --space-24: 96px;
+
+        --radius-sm: 8px;
+        --radius-md: 14px;
+        --radius-lg: 22px;
+        --radius-pill: 999px;
+
+        --shadow-sm: 0 8px 24px rgba(16, 33, 38, 0.08);
+        --shadow-md: 0 18px 50px rgba(16, 33, 38, 0.13);
+        --shadow-lg: 0 28px 80px rgba(7, 24, 29, 0.24);
+        --shadow-nav: 0 10px 34px rgba(16, 33, 38, 0.12);
+
+        --container: 1180px;
+        --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        background: var(--color-cloud);
+        color: var(--color-ink);
+        font-family: var(--font-body);
+        font-size: 16px;
+        line-height: 1.6;
+      }
+
+      body::before {
+        position: fixed;
+        inset: 0;
+        z-index: -1;
+        pointer-events: none;
+        content: "";
+        background:
+          radial-gradient(circle at 18% 12%, rgba(0, 168, 153, 0.16), transparent 30%),
+          radial-gradient(circle at 82% 8%, rgba(71, 124, 255, 0.12), transparent 28%),
+          linear-gradient(180deg, #f8fcfb 0%, #eef7f5 44%, #f8fbfa 100%);
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      button,
+      input,
+      select {
+        font: inherit;
+      }
+
+      .page-shell {
+        overflow: hidden;
+      }
+
+      .container {
+        width: min(calc(100% - 48px), var(--container));
+        margin-inline: auto;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--space-2);
+        width: fit-content;
+        margin: 0 0 var(--space-4);
+        color: var(--color-teal-dark);
+        font-family: var(--font-mono);
+        font-size: 12px;
+        font-weight: 500;
+        letter-spacing: 0;
+        text-transform: uppercase;
+      }
+
+      .eyebrow::before {
+        display: block;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        content: "";
+        background: var(--color-coral);
+        box-shadow: 16px 0 0 var(--color-teal);
+      }
+
+      .section {
+        padding: var(--space-24) 0;
+      }
+
+      .section-head {
+        display: grid;
+        grid-template-columns: minmax(0, 0.9fr) minmax(280px, 0.55fr);
+        gap: var(--space-12);
+        align-items: end;
+        margin-bottom: var(--space-12);
+      }
+
+      h1,
+      h2,
+      h3,
+      p {
+        margin-top: 0;
+      }
+
+      h1,
+      h2,
+      h3 {
+        font-family: var(--font-heading);
+        line-height: 1.02;
+        letter-spacing: 0;
+      }
+
+      h1 {
+        max-width: 920px;
+        margin-bottom: var(--space-6);
+        font-size: clamp(52px, 7vw, 96px);
+      }
+
+      h2 {
+        margin-bottom: 0;
+        font-size: clamp(36px, 4.6vw, 64px);
+      }
+
+      h3 {
+        margin-bottom: var(--space-3);
+        font-size: 24px;
+      }
+
+      .lead {
+        color: var(--color-ink-soft);
+        font-size: 20px;
+        line-height: 1.7;
+      }
+
+      .btn {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: var(--space-2);
+        min-height: 48px;
+        padding: 0 var(--space-5);
+        border: 1px solid transparent;
+        border-radius: var(--radius-pill);
+        cursor: pointer;
+        font-weight: 700;
+        transition: transform 180ms var(--ease), box-shadow 180ms var(--ease), background 180ms var(--ease);
+      }
+
+      .btn:hover {
+        transform: translateY(-2px);
+      }
+
+      .btn-primary {
+        background: var(--color-teal);
+        color: white;
+        box-shadow: 0 14px 34px rgba(0, 168, 153, 0.28);
+      }
+
+      .btn-primary:hover {
+        background: var(--color-teal-dark);
+      }
+
+      .btn-secondary {
+        background: rgba(255, 255, 255, 0.78);
+        border-color: var(--color-line);
+        color: var(--color-ink);
+      }
+
+      .btn-secondary:hover {
+        box-shadow: var(--shadow-sm);
+      }
+
+      .nav {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        border-bottom: 1px solid rgba(217, 229, 228, 0.55);
+        background: rgba(248, 252, 251, 0.72);
+        backdrop-filter: blur(18px);
+        transition: box-shadow 180ms var(--ease), background 180ms var(--ease);
+      }
+
+      .nav.is-scrolled {
+        background: rgba(248, 252, 251, 0.9);
+        box-shadow: var(--shadow-nav);
+      }
+
+      .nav-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        min-height: 76px;
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--space-3);
+        font-family: var(--font-heading);
+        font-size: 22px;
+        font-weight: 800;
+      }
+
+      .brand-mark {
+        display: grid;
+        width: 40px;
+        height: 40px;
+        place-items: center;
+        border-radius: 12px;
+        background: var(--color-deep);
+        color: var(--color-mint);
+        font-family: var(--font-mono);
+        font-size: 14px;
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: var(--space-6);
+        color: var(--color-ink-soft);
+        font-size: 14px;
+        font-weight: 700;
+      }
+
+      .nav-links a {
+        position: relative;
+      }
+
+      .nav-links a::after {
+        position: absolute;
+        right: 0;
+        bottom: -8px;
+        left: 0;
+        height: 2px;
+        content: "";
+        background: var(--color-teal);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 180ms var(--ease);
+      }
+
+      .nav-links a:hover::after {
+        transform: scaleX(1);
+      }
+
+      .nav-actions {
+        display: flex;
+        align-items: center;
+        gap: var(--space-3);
+      }
+
+      .hero {
+        position: relative;
+        padding: var(--space-20) 0 var(--space-16);
+      }
+
+      .hero-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 390px;
+        gap: var(--space-12);
+        align-items: center;
+      }
+
+      .hero-copy {
+        position: relative;
+        z-index: 1;
+      }
+
+      .hero-copy strong {
+        color: var(--color-teal-dark);
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-4);
+        margin: var(--space-8) 0 var(--space-10);
+      }
+
+      .hero-stats {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        max-width: 760px;
+        border: 1px solid var(--color-line);
+        border-radius: var(--radius-lg);
+        background: rgba(255, 255, 255, 0.76);
+        box-shadow: var(--shadow-sm);
+      }
+
+      .hero-stat {
+        padding: var(--space-5);
+      }
+
+      .hero-stat + .hero-stat {
+        border-left: 1px solid var(--color-line);
+      }
+
+      .metric {
+        display: block;
+        color: var(--color-ink);
+        font-family: var(--font-mono);
+        font-size: 28px;
+        font-weight: 500;
+        line-height: 1;
+      }
+
+      .metric-label {
+        display: block;
+        margin-top: var(--space-2);
+        color: var(--color-muted);
+        font-size: 13px;
+        font-weight: 700;
+      }
+
+      .scan-panel {
+        position: relative;
+        min-height: 560px;
+      }
+
+      .scan-card {
+        position: absolute;
+        inset: 0;
+        padding: var(--space-6);
+        border: 1px solid rgba(255, 255, 255, 0.72);
+        border-radius: 32px;
+        background: linear-gradient(145deg, rgba(7, 24, 29, 0.98), rgba(14, 43, 49, 0.96));
+        color: white;
+        box-shadow: var(--shadow-lg);
+      }
+
+      .scan-card::before {
+        position: absolute;
+        inset: 24px;
+        border: 1px solid rgba(191, 244, 234, 0.26);
+        border-radius: 24px;
+        content: "";
+        pointer-events: none;
+      }
+
+      .scan-top {
+        display: flex;
+        justify-content: space-between;
+        color: rgba(255, 255, 255, 0.72);
+        font-family: var(--font-mono);
+        font-size: 12px;
+      }
+
+      .scan-visual {
+        position: relative;
+        display: grid;
+        height: 320px;
+        margin: var(--space-10) 0 var(--space-6);
+        place-items: center;
+        border-radius: 28px;
+        background:
+          linear-gradient(90deg, transparent 49%, rgba(191, 244, 234, 0.45) 50%, transparent 51%),
+          linear-gradient(0deg, transparent 49%, rgba(191, 244, 234, 0.25) 50%, transparent 51%),
+          radial-gradient(circle, rgba(191, 244, 234, 0.9) 0 10%, rgba(0, 168, 153, 0.28) 11% 38%, transparent 39%),
+          repeating-linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0 2px, transparent 2px 12px);
+        overflow: hidden;
+      }
+
+      .scan-visual::after {
+        position: absolute;
+        width: 240px;
+        height: 240px;
+        border: 1px solid rgba(191, 244, 234, 0.35);
+        border-radius: 50%;
+        content: "";
+        animation: pulse 3s infinite;
+      }
+
+      .scan-badge {
+        position: absolute;
+        right: 18px;
+        bottom: 18px;
+        padding: var(--space-3) var(--space-4);
+        border: 1px solid rgba(191, 244, 234, 0.26);
+        border-radius: var(--radius-md);
+        background: rgba(7, 24, 29, 0.72);
+        color: var(--color-mint);
+        font-family: var(--font-mono);
+        font-size: 12px;
+      }
+
+      .scan-status {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-4);
+      }
+
+      .status-tile {
+        padding: var(--space-4);
+        border: 1px solid rgba(191, 244, 234, 0.18);
+        border-radius: var(--radius-md);
+        background: rgba(255, 255, 255, 0.06);
+      }
+
+      .status-tile span {
+        display: block;
+        color: rgba(255, 255, 255, 0.58);
+        font-size: 12px;
+      }
+
+      .status-tile strong {
+        display: block;
+        margin-top: var(--space-1);
+        color: white;
+        font-family: var(--font-mono);
+        font-size: 18px;
+      }
+
+      .trust {
+        padding: 0 0 var(--space-16);
+      }
+
+      .trust-strip {
+        display: grid;
+        grid-template-columns: 190px repeat(5, 1fr);
+        align-items: center;
+        gap: var(--space-4);
+        padding: var(--space-5);
+        border: 1px solid var(--color-line);
+        border-radius: var(--radius-lg);
+        background: rgba(255, 255, 255, 0.72);
+        box-shadow: var(--shadow-sm);
+      }
+
+      .trust-label {
+        color: var(--color-muted);
+        font-size: 13px;
+        font-weight: 700;
+      }
+
+      .logo-pill {
+        display: grid;
+        min-height: 48px;
+        place-items: center;
+        border: 1px solid var(--color-line);
+        border-radius: var(--radius-sm);
+        background: var(--color-surface);
+        color: var(--color-ink-soft);
+        font-family: var(--font-heading);
+        font-size: 15px;
+        font-weight: 700;
+      }
+
+      .path-grid,
+      .testimonial-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: var(--space-5);
+      }
+
+      .path-card,
+      .testimonial-card,
+      .ai-feature {
+        position: relative;
+        border: 1px solid var(--color-line);
+        border-radius: var(--radius-lg);
+        background: rgba(255, 255, 255, 0.78);
+        box-shadow: var(--shadow-sm);
+        transition: transform 180ms var(--ease), box-shadow 180ms var(--ease), border-color 180ms var(--ease);
+      }
+
+      .path-card {
+        min-height: 330px;
+        padding: var(--space-6);
+      }
+
+      .path-card:hover,
+      .testimonial-card:hover {
+        border-color: rgba(0, 168, 153, 0.45);
+        box-shadow: var(--shadow-md);
+        transform: translateY(-5px);
+      }
+
+      .card-icon {
+        display: grid;
+        width: 52px;
+        height: 52px;
+        margin-bottom: var(--space-6);
+        place-items: center;
+        border-radius: 16px;
+        background: var(--color-surface-alt);
+        color: var(--color-teal-dark);
+        font-family: var(--font-mono);
+        font-weight: 500;
+      }
+
+      .path-card p,
+      .testimonial-card p,
+      .ai-feature p {
+        color: var(--color-ink-soft);
+      }
+
+      .path-link {
+        position: absolute;
+        right: var(--space-6);
+        bottom: var(--space-6);
+        left: var(--space-6);
+        display: flex;
+        justify-content: space-between;
+        padding-top: var(--space-4);
+        border-top: 1px solid var(--color-line);
+        color: var(--color-teal-dark);
+        font-weight: 800;
+      }
+
+      .workflow {
+        display: grid;
+        grid-template-columns: 0.95fr 1.05fr;
+        gap: var(--space-10);
+        align-items: center;
+      }
+
+      .steps {
+        display: grid;
+        gap: var(--space-4);
+      }
+
+      .step {
+        display: grid;
+        grid-template-columns: 54px 1fr;
+        gap: var(--space-4);
+        align-items: start;
+        padding: var(--space-5);
+        border: 1px solid var(--color-line);
+        border-radius: var(--radius-lg);
+        background: rgba(255, 255, 255, 0.74);
+      }
+
+      .step-num {
+        display: grid;
+        width: 54px;
+        height: 54px;
+        place-items: center;
+        border-radius: 18px;
+        background: var(--color-deep);
+        color: var(--color-mint);
+        font-family: var(--font-mono);
+      }
+
+      .diagram {
+        position: relative;
+        min-height: 520px;
+        padding: var(--space-8);
+        border: 1px solid var(--color-line);
+        border-radius: 30px;
+        background:
+          linear-gradient(90deg, rgba(16, 33, 38, 0.04) 1px, transparent 1px),
+          linear-gradient(0deg, rgba(16, 33, 38, 0.04) 1px, transparent 1px),
+          rgba(255, 255, 255, 0.74);
+        background-size: 32px 32px;
+        box-shadow: var(--shadow-md);
+      }
+
+      .node {
+        position: absolute;
+        width: 170px;
+        padding: var(--space-4);
+        border: 1px solid var(--color-line);
+        border-radius: var(--radius-md);
+        background: white;
+        box-shadow: var(--shadow-sm);
+        font-weight: 800;
+      }
+
+      .node span {
+        display: block;
+        margin-top: var(--space-1);
+        color: var(--color-muted);
+        font-size: 12px;
+        font-weight: 700;
+      }
+
+      .node-a {
+        top: 46px;
+        left: 44px;
+      }
+
+      .node-b {
+        top: 46px;
+        right: 44px;
+      }
+
+      .node-c {
+        top: 222px;
+        left: calc(50% - 85px);
+        border-color: rgba(0, 168, 153, 0.46);
+      }
+
+      .node-d {
+        right: 44px;
+        bottom: 48px;
+      }
+
+      .node-e {
+        bottom: 48px;
+        left: 44px;
+      }
+
+      .connector {
+        position: absolute;
+        height: 2px;
+        background: linear-gradient(90deg, var(--color-teal), rgba(0, 168, 153, 0.08));
+        transform-origin: left;
+      }
+
+      .connector.one {
+        top: 130px;
+        left: 214px;
+        width: 190px;
+      }
+
+      .connector.two {
+        top: 192px;
+        right: 190px;
+        width: 150px;
+        transform: rotate(135deg);
+      }
+
+      .connector.three {
+        right: 160px;
+        bottom: 178px;
+        width: 130px;
+        transform: rotate(75deg);
+      }
+
+      .connector.four {
+        bottom: 124px;
+        left: 214px;
+        width: 190px;
+        transform: rotate(180deg);
+      }
+
+      .ai-section {
+        position: relative;
+        color: white;
+        background: var(--color-deep);
+      }
+
+      .ai-section::before {
+        position: absolute;
+        inset: 0;
+        content: "";
+        background:
+          radial-gradient(circle at 22% 24%, rgba(0, 168, 153, 0.24), transparent 34%),
+          radial-gradient(circle at 82% 34%, rgba(155, 124, 255, 0.2), transparent 28%),
+          linear-gradient(180deg, rgba(255, 255, 255, 0.03), transparent);
+        pointer-events: none;
+      }
+
+      .ai-section .container {
+        position: relative;
+      }
+
+      .ai-section .eyebrow,
+      .ai-section .lead {
+        color: var(--color-mint);
+      }
+
+      .ai-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: var(--space-5);
+      }
+
+      .ai-feature {
+        min-height: 300px;
+        padding: var(--space-6);
+        border-color: rgba(191, 244, 234, 0.16);
+        background: rgba(255, 255, 255, 0.07);
+        box-shadow: none;
+      }
+
+      .ai-feature p {
+        color: rgba(255, 255, 255, 0.72);
+      }
+
+      .ai-orbit {
+        display: grid;
+        width: 76px;
+        height: 76px;
+        margin-bottom: var(--space-8);
+        place-items: center;
+        border: 1px solid rgba(191, 244, 234, 0.28);
+        border-radius: 50%;
+        color: var(--color-mint);
+        font-family: var(--font-mono);
+        background:
+          radial-gradient(circle, rgba(191, 244, 234, 0.24), transparent 52%),
+          rgba(255, 255, 255, 0.06);
+      }
+
+      .stats-band {
+        padding: var(--space-16) 0;
+        background: var(--color-surface);
+      }
+
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: var(--space-4);
+      }
+
+      .stat-block {
+        padding: var(--space-6);
+        border-left: 1px solid var(--color-line);
+      }
+
+      .stat-block:first-child {
+        border-left: 0;
+      }
+
+      .stat-block .metric {
+        font-size: clamp(30px, 4vw, 48px);
+      }
+
+      .testimonial-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .testimonial-card {
+        min-height: 290px;
+        padding: var(--space-6);
+      }
+
+      .quote-mark {
+        margin-bottom: var(--space-5);
+        color: var(--color-coral);
+        font-family: var(--font-heading);
+        font-size: 52px;
+        line-height: 0.8;
+      }
+
+      .person {
+        display: flex;
+        align-items: center;
+        gap: var(--space-3);
+        margin-top: var(--space-8);
+      }
+
+      .avatar {
+        display: grid;
+        width: 44px;
+        height: 44px;
+        place-items: center;
+        border-radius: 50%;
+        background: var(--color-deep);
+        color: white;
+        font-family: var(--font-mono);
+        font-size: 12px;
+      }
+
+      .person strong,
+      .person span {
+        display: block;
+      }
+
+      .person span {
+        color: var(--color-muted);
+        font-size: 13px;
+      }
+
+      .cta {
+        padding: var(--space-24) 0;
+      }
+
+      .cta-panel {
+        display: grid;
+        grid-template-columns: 0.9fr 1.1fr;
+        gap: var(--space-10);
+        align-items: center;
+        padding: var(--space-10);
+        border-radius: 34px;
+        background: var(--color-deep);
+        color: white;
+        box-shadow: var(--shadow-lg);
+      }
+
+      .cta-panel .lead {
+        color: rgba(255, 255, 255, 0.72);
+      }
+
+      .lead-form {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-4);
+        padding: var(--space-5);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: var(--radius-lg);
+        background: rgba(255, 255, 255, 0.08);
+      }
+
+      .lead-form label {
+        display: grid;
+        gap: var(--space-2);
+        color: rgba(255, 255, 255, 0.66);
+        font-size: 12px;
+        font-weight: 700;
+      }
+
+      .lead-form input,
+      .lead-form select {
+        width: 100%;
+        min-height: 48px;
+        padding: 0 var(--space-4);
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        border-radius: var(--radius-sm);
+        outline: none;
+        background: rgba(255, 255, 255, 0.96);
+        color: var(--color-ink);
+      }
+
+      .lead-form .wide,
+      .lead-form button {
+        grid-column: 1 / -1;
+      }
+
+      .footer {
+        padding: var(--space-16) 0 var(--space-8);
+        background: #061216;
+        color: rgba(255, 255, 255, 0.72);
+      }
+
+      .footer-grid {
+        display: grid;
+        grid-template-columns: 1.3fr repeat(4, 1fr);
+        gap: var(--space-8);
+      }
+
+      .footer h3,
+      .footer h4 {
+        color: white;
+      }
+
+      .footer h4 {
+        margin: 0 0 var(--space-4);
+        font-size: 14px;
+      }
+
+      .footer a {
+        display: block;
+        margin-bottom: var(--space-3);
+        color: rgba(255, 255, 255, 0.66);
+      }
+
+      .footer-bottom {
+        display: flex;
+        justify-content: space-between;
+        gap: var(--space-4);
+        margin-top: var(--space-12);
+        padding-top: var(--space-6);
+        border-top: 1px solid rgba(255, 255, 255, 0.12);
+        color: rgba(255, 255, 255, 0.48);
+        font-size: 13px;
+      }
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(18px);
+        transition: opacity 600ms var(--ease), transform 600ms var(--ease);
+      }
+
+      .reveal.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 0.52;
+          transform: scale(0.96);
+        }
+
+        50% {
+          opacity: 0.9;
+          transform: scale(1.06);
+        }
+      }
+
+      @media (max-width: 1024px) {
+        .container {
+          width: min(calc(100% - 36px), var(--container));
+        }
+
+        .nav-links {
+          display: none;
+        }
+
+        .hero-grid,
+        .workflow,
+        .cta-panel,
+        .section-head {
+          grid-template-columns: 1fr;
+        }
+
+        .scan-panel {
+          min-height: 520px;
+          max-width: 520px;
+        }
+
+        .path-grid,
+        .stats-grid,
+        .footer-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .trust-strip {
+          grid-template-columns: repeat(3, 1fr);
+        }
+
+        .trust-label {
+          grid-column: 1 / -1;
+        }
+
+        .ai-grid,
+        .testimonial-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .section {
+          padding: var(--space-16) 0;
+        }
+
+        .nav-inner {
+          min-height: 68px;
+        }
+
+        .brand span:last-child,
+        .nav-actions .btn-secondary {
+          display: none;
+        }
+
+        .hero {
+          padding-top: var(--space-12);
+        }
+
+        h1 {
+          font-size: 46px;
+        }
+
+        .lead {
+          font-size: 18px;
+        }
+
+        .hero-stats,
+        .path-grid,
+        .stats-grid,
+        .footer-grid,
+        .lead-form {
+          grid-template-columns: 1fr;
+        }
+
+        .hero-stat + .hero-stat,
+        .stat-block {
+          border-left: 0;
+          border-top: 1px solid var(--color-line);
+        }
+
+        .stat-block:first-child {
+          border-top: 0;
+        }
+
+        .trust-strip {
+          grid-template-columns: 1fr 1fr;
+          padding: var(--space-4);
+        }
+
+        .scan-panel {
+          min-height: 500px;
+        }
+
+        .scan-card {
+          padding: var(--space-4);
+          border-radius: 24px;
+        }
+
+        .scan-card::before {
+          inset: 16px;
+        }
+
+        .scan-status {
+          grid-template-columns: 1fr;
+        }
+
+        .diagram {
+          min-height: 560px;
+          padding: var(--space-4);
+        }
+
+        .node {
+          right: auto;
+          left: 50%;
+          width: min(210px, calc(100% - 32px));
+          transform: translateX(-50%);
+        }
+
+        .node-a {
+          top: 32px;
+        }
+
+        .node-b {
+          top: 132px;
+        }
+
+        .node-c {
+          top: 232px;
+        }
+
+        .node-d {
+          top: 332px;
+          bottom: auto;
+        }
+
+        .node-e {
+          top: 432px;
+          bottom: auto;
+        }
+
+        .connector {
+          display: none;
+        }
+
+        .cta-panel {
+          padding: var(--space-6);
+          border-radius: 24px;
+        }
+
+        .footer-bottom {
+          flex-direction: column;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="nav" data-nav>
+        <div class="container nav-inner">
+          <a href="#" class="brand" aria-label="5C Network home">
+            <span class="brand-mark">5C</span>
+            <span>5C Network</span>
+          </a>
+          <nav class="nav-links" aria-label="Primary navigation">
+            <a href="#paths">Solutions</a>
+            <a href="#workflow">How it works</a>
+            <a href="#ai">AI Engine</a>
+            <a href="#proof">Proof</a>
+            <a href="#contact">Contact</a>
+          </nav>
+          <div class="nav-actions">
+            <a class="btn btn-secondary" href="#contact">Sign in</a>
+            <a class="btn btn-primary" href="#contact">Book demo</a>
+          </div>
+        </div>
+      </header>
+
+      <main>
+        <section class="hero">
+          <div class="container hero-grid">
+            <div class="hero-copy reveal">
+              <p class="eyebrow">Radiology command layer</p>
+              <h1>Diagnostic reporting that moves at <strong>care speed.</strong></h1>
+              <p class="lead">
+                5C Network brings hospitals, diagnostic centres, radiologists, and AI quality systems into one
+                operating layer, so every scan can reach the right specialist faster.
+              </p>
+              <div class="hero-actions">
+                <a class="btn btn-primary" href="#contact">Start reporting faster</a>
+                <a class="btn btn-secondary" href="#workflow">See workflow</a>
+              </div>
+              <div class="hero-stats" aria-label="Key platform stats">
+                <div class="hero-stat">
+                  <span class="metric">10K+</span>
+                  <span class="metric-label">scans processed daily</span>
+                </div>
+                <div class="hero-stat">
+                  <span class="metric">30m</span>
+                  <span class="metric-label">priority TAT</span>
+                </div>
+                <div class="hero-stat">
+                  <span class="metric">24/7</span>
+                  <span class="metric-label">coverage across modalities</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="scan-panel reveal" aria-label="AI assisted reporting preview">
+              <div class="scan-card">
+                <div class="scan-top">
+                  <span>CASE ID 5C-48291</span>
+                  <span>AI TRIAGED</span>
+                </div>
+                <div class="scan-visual">
+                  <span class="scan-badge">Bionic Vision: 94% confidence</span>
+                </div>
+                <div class="scan-status">
+                  <div class="status-tile">
+                    <span>Queue status</span>
+                    <strong>Assigned</strong>
+                  </div>
+                  <div class="status-tile">
+                    <span>Report ETA</span>
+                    <strong>18 min</strong>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="trust" aria-label="Trusted partners">
+          <div class="container trust-strip reveal">
+            <p class="trust-label">Trusted by care teams, centres, and networks</p>
+            <div class="logo-pill">Apollo</div>
+            <div class="logo-pill">Manipal</div>
+            <div class="logo-pill">Aster</div>
+            <div class="logo-pill">Narayana</div>
+            <div class="logo-pill">Cloudnine</div>
+          </div>
+        </section>
+
+        <section class="section" id="paths">
+          <div class="container">
+            <div class="section-head reveal">
+              <div>
+                <p class="eyebrow">User paths</p>
+                <h2>One network, four high-velocity ways in.</h2>
+              </div>
+              <p class="lead">
+                Every participant gets a workflow shaped around their operational reality, from a single CT scanner
+                to a national diagnostics chain.
+              </p>
+            </div>
+            <div class="path-grid">
+              <article class="path-card reveal">
+                <div class="card-icon">H</div>
+                <h3>Hospitals</h3>
+                <p>Keep emergency and inpatient reporting moving with specialist routing, escalation rules, and audit-ready delivery.</p>
+                <a class="path-link" href="#contact">Extend your radiology team <span>+</span></a>
+              </article>
+              <article class="path-card reveal">
+                <div class="card-icon">N</div>
+                <h3>New Centres</h3>
+                <p>Launch with immediate reporting capacity, modality coverage, and guided onboarding for technicians and admins.</p>
+                <a class="path-link" href="#contact">Go live faster <span>+</span></a>
+              </article>
+              <article class="path-card reveal">
+                <div class="card-icon">R</div>
+                <h3>Radiologists</h3>
+                <p>Work on curated cases, AI-assisted quality checks, structured templates, and a reliable operating backbone.</p>
+                <a class="path-link" href="#contact">Join the panel <span>+</span></a>
+              </article>
+              <article class="path-card reveal">
+                <div class="card-icon">C</div>
+                <h3>Chains</h3>
+                <p>Standardize reporting, SLAs, clinical quality, and utilization across every city, scanner, and business unit.</p>
+                <a class="path-link" href="#contact">Scale reporting ops <span>+</span></a>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="workflow">
+          <div class="container workflow">
+            <div class="reveal">
+              <p class="eyebrow">How it works</p>
+              <h2>From scan upload to signed report in four coordinated moves.</h2>
+              <p class="lead">
+                The platform handles intake, AI triage, radiologist assignment, and final delivery with a transparent
+                workflow for every stakeholder.
+              </p>
+              <div class="steps">
+                <div class="step">
+                  <span class="step-num">01</span>
+                  <div>
+                    <h3>Acquire and upload</h3>
+                    <p>DICOM studies enter through integrated PACS, centre dashboards, or secure upload channels.</p>
+                  </div>
+                </div>
+                <div class="step">
+                  <span class="step-num">02</span>
+                  <div>
+                    <h3>AI triage and QC</h3>
+                    <p>Cases are prioritized, checked for quality, and enriched with modality-specific context.</p>
+                  </div>
+                </div>
+                <div class="step">
+                  <span class="step-num">03</span>
+                  <div>
+                    <h3>Specialist routing</h3>
+                    <p>The right radiologist receives the right study based on subspecialty, SLA, and availability.</p>
+                  </div>
+                </div>
+                <div class="step">
+                  <span class="step-num">04</span>
+                  <div>
+                    <h3>Report delivery</h3>
+                    <p>Structured reports return to the centre with timestamps, alerts, and operational analytics.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="diagram reveal" aria-label="Radiology workflow diagram">
+              <div class="node node-a">Imaging Centre<span>Scan acquired</span></div>
+              <div class="node node-b">5C Intake<span>Study normalized</span></div>
+              <div class="node node-c">AI Engine<span>Triage and quality</span></div>
+              <div class="node node-d">Radiologist<span>Report signed</span></div>
+              <div class="node node-e">Care Team<span>Actionable result</span></div>
+              <span class="connector one"></span>
+              <span class="connector two"></span>
+              <span class="connector three"></span>
+              <span class="connector four"></span>
+            </div>
+          </div>
+        </section>
+
+        <section class="section ai-section" id="ai">
+          <div class="container">
+            <div class="section-head reveal">
+              <div>
+                <p class="eyebrow">AI engine</p>
+                <h2>Bionic intelligence for the moments radiology cannot slow down.</h2>
+              </div>
+              <p class="lead">
+                The AI layer supports the human expert, reducing friction around detection, workflow, and quality
+                assurance without removing clinical accountability.
+              </p>
+            </div>
+            <div class="ai-grid">
+              <article class="ai-feature reveal">
+                <div class="ai-orbit">BV</div>
+                <h3>Bionic Vision</h3>
+                <p>Detects critical patterns, flags urgent findings, and surfaces image-level context before the case lands in a queue.</p>
+              </article>
+              <article class="ai-feature reveal">
+                <div class="ai-orbit">BF</div>
+                <h3>Bionic Flow</h3>
+                <p>Balances SLA urgency, modality, subspecialty, location, and availability to keep reporting throughput predictable.</p>
+              </article>
+              <article class="ai-feature reveal">
+                <div class="ai-orbit">QC</div>
+                <h3>Quality Control</h3>
+                <p>Runs structured checks for completeness, discrepancy risk, and report consistency before delivery to the care team.</p>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section class="stats-band" id="proof">
+          <div class="container stats-grid reveal">
+            <div class="stat-block">
+              <span class="metric">10K+</span>
+              <span class="metric-label">scans processed</span>
+            </div>
+            <div class="stat-block">
+              <span class="metric">30 min</span>
+              <span class="metric-label">priority turnaround</span>
+            </div>
+            <div class="stat-block">
+              <span class="metric">1500+</span>
+              <span class="metric-label">facilities connected</span>
+            </div>
+            <div class="stat-block">
+              <span class="metric">400+</span>
+              <span class="metric-label">radiologists onboard</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="container">
+            <div class="section-head reveal">
+              <div>
+                <p class="eyebrow">Testimonials</p>
+                <h2>Built for teams that measure every minute.</h2>
+              </div>
+              <p class="lead">
+                Operators, clinicians, and radiologists use 5C Network to make capacity feel less fragile and quality
+                easier to monitor.
+              </p>
+            </div>
+            <div class="testimonial-grid">
+              <article class="testimonial-card reveal">
+                <div class="quote-mark">“</div>
+                <p>5C helped us absorb emergency reporting demand without hiring for every shift. The visibility into TAT changed our operations.</p>
+                <div class="person">
+                  <span class="avatar">AM</span>
+                  <div><strong>Arjun Menon</strong><span>COO, MetroCare Hospitals</span></div>
+                </div>
+              </article>
+              <article class="testimonial-card reveal">
+                <div class="quote-mark">“</div>
+                <p>Our new centre launched with reporting coverage from day one. The handoff between technicians and radiologists is extremely clean.</p>
+                <div class="person">
+                  <span class="avatar">SP</span>
+                  <div><strong>Sneha Patil</strong><span>Founder, ScanPoint Diagnostics</span></div>
+                </div>
+              </article>
+              <article class="testimonial-card reveal">
+                <div class="quote-mark">“</div>
+                <p>The AI QC layer catches the small operational misses before they become clinical or customer escalations.</p>
+                <div class="person">
+                  <span class="avatar">DR</span>
+                  <div><strong>Dr. R. Iyer</strong><span>Consultant Radiologist</span></div>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section class="cta" id="contact">
+          <div class="container cta-panel reveal">
+            <div>
+              <p class="eyebrow">Lead gen</p>
+              <h2>Bring reporting capacity online before the next queue spike.</h2>
+              <p class="lead">
+                Tell us what you run today and the 5C team will map a reporting workflow for your modality mix,
+                volume, and turnaround goals.
+              </p>
+            </div>
+            <form class="lead-form" action="#" method="post">
+              <label>
+                Name
+                <input type="text" name="name" placeholder="Dr. Asha Rao" autocomplete="name">
+              </label>
+              <label>
+                Work email
+                <input type="email" name="email" placeholder="asha@hospital.in" autocomplete="email">
+              </label>
+              <label>
+                Organization type
+                <select name="type">
+                  <option>Hospital</option>
+                  <option>Diagnostic centre</option>
+                  <option>Radiologist</option>
+                  <option>Diagnostics chain</option>
+                </select>
+              </label>
+              <label>
+                Monthly scan volume
+                <input type="text" name="volume" placeholder="2,500 scans">
+              </label>
+              <label class="wide">
+                Priority
+                <input type="text" name="priority" placeholder="Reduce CT emergency TAT across nights">
+              </label>
+              <button class="btn btn-primary" type="submit">Request workflow consult</button>
+            </form>
+          </div>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <div class="container">
+          <div class="footer-grid">
+            <div>
+              <a href="#" class="brand" aria-label="5C Network home">
+                <span class="brand-mark">5C</span>
+                <span>5C Network</span>
+              </a>
+              <p>India's connected radiology operating layer for faster reports, stronger quality, and wider access.</p>
+            </div>
+            <div>
+              <h4>Solutions</h4>
+              <a href="#paths">Hospitals</a>
+              <a href="#paths">Diagnostic centres</a>
+              <a href="#paths">Radiologists</a>
+              <a href="#paths">Chains</a>
+            </div>
+            <div>
+              <h4>Platform</h4>
+              <a href="#workflow">Workflow</a>
+              <a href="#ai">Bionic Vision</a>
+              <a href="#ai">Bionic Flow</a>
+              <a href="#proof">Analytics</a>
+            </div>
+            <div>
+              <h4>Company</h4>
+              <a href="#">About</a>
+              <a href="#">Careers</a>
+              <a href="#">Newsroom</a>
+              <a href="#">Contact</a>
+            </div>
+            <div>
+              <h4>Compliance</h4>
+              <a href="#">Privacy</a>
+              <a href="#">Security</a>
+              <a href="#">Terms</a>
+              <a href="#">Clinical quality</a>
+            </div>
+          </div>
+          <div class="footer-bottom">
+            <span>© 2026 5C Network. All rights reserved.</span>
+            <span>Bengaluru · Mumbai · Delhi NCR · Remote reporting network</span>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script>
+      const nav = document.querySelector("[data-nav]");
+      const revealItems = document.querySelectorAll(".reveal");
+
+      const syncNav = () => {
+        nav.classList.toggle("is-scrolled", window.scrollY > 8);
+      };
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-visible");
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.14 }
+      );
+
+      revealItems.forEach((item, index) => {
+        item.style.transitionDelay = `${Math.min(index * 45, 240)}ms`;
+        observer.observe(item);
+      });
+
+      window.addEventListener("scroll", syncNav, { passive: true });
+      syncNav();
+    </script>
+  </body>
+</html>
